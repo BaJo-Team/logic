@@ -4,7 +4,7 @@ import win32gui
 
 
 # 단일 변환
-def hwp2ppt(input_file_path, output_folder_path):
+def hwp2pdf(input_file_path, output_folder_path):
     file_name = input_file_path.split("\\")[-1].split(".")[0]  # 선택한 파일 이름
     output_file_path = os.path.join(output_folder_path, file_name + ".pdf")  # 변환된 파일 저장 경로
 
@@ -26,7 +26,7 @@ def hwp2ppt(input_file_path, output_folder_path):
     return file_name + ".pdf"
 
 # 다중 변환
-def hwps2ppts(input_file_paths, output_folder_path):
+def hwps2pdfs(input_file_paths, output_folder_path):
     file_names = []  # 선택한 파일들의 이름 리스트
     output_file_paths = []  # 변환된 파일들 저장 경로
     output_file_names = []  # 변환된 파일들 이름
@@ -45,6 +45,9 @@ def hwps2ppts(input_file_paths, output_folder_path):
     win32gui.ShowWindow(hwnd, 0)
 
     for input_file_path in input_file_paths:
+        # 경로 재구성
+        input_file_path = change_path(input_file_path)
+
         i = input_file_paths.index(input_file_path)  # 해당 파일 인덱스
 
         if not input_file_path.lower().endswith((".hwp")):  # 사용자가 .hwp 파일을 선택하지 않았을 경우
@@ -61,3 +64,7 @@ def hwps2ppts(input_file_paths, output_folder_path):
     hwp.Quit()
 
     return output_file_names
+
+def change_path(path):
+    new_path = path.replace('/', '\\')
+    return new_path

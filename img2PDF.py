@@ -35,6 +35,8 @@ def imgs2pdf(input_file_paths, output_folder_path):
 
     img_list = []
     for input_file_path in input_file_paths:
+        # 경로 재구성
+        input_file_path = change_path(input_file_path)
         file_name += input_file_path.split("\\")[-1].split(".")[0]
 
         img = Image.open(input_file_path)
@@ -46,3 +48,7 @@ def imgs2pdf(input_file_paths, output_folder_path):
     img_list[0].save(output_file_path, save_all=True, append_images=img_list)
 
     return file_name
+
+def change_path(path):
+    new_path = path.replace('/', '\\')
+    return new_path
