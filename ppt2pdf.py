@@ -25,7 +25,7 @@ def ppt2pdfs(input_file_paths, output_folder_path):
 
     # 선택된 파일들 하나하나 pdf로 변환(위에서 만든 함수 사용)
     for input_file_path in input_file_paths:
-        # word -> pdf 변환
+        # ppt -> pdf 변환
         output_file_name = ppt2pdf(input_file_path, output_folder_path)
         # 리스트에 pdf 변환된 파일 이름 추가
         output_file_names.append(output_file_name)
