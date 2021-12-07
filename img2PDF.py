@@ -12,7 +12,7 @@ def img2pdf(input_file_path, output_folder_path):
     imgConvert = img.convert('RGB')
     imgConvert.save(output_file_path)
 
-    return file_name
+    return file_name + ".pdf"
 
 # 다중 파일 변환
 def img2pdfs(input_file_paths, output_folder_path):
